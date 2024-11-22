@@ -1,0 +1,364 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// SCSS Variabel
+$shadow-color: rgba(63, 63, 63, 0.1);
+$card-bg-color: #a5a5a5;
+$line-color: #000000;
+$hover-color: #4f3a3a;
+$highlight-color: #50705d;
+$primary-font: 'Poppins', sans-serif;
+$secondary-font: 'Lora', serif;
+$accent-color: #746b5f;
+$primary-bg-color: #746b5f;
+$primary-text-color: #434343;
+
+body {
+  font-family: $primary-font;
+  background-color: $primary-bg-color;
+  color: $primary-text-color;
+}
+
+main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+// Navbar Styling       
+a, i {
+  text-decoration: none;
+  color: white;
+  box-sizing: border-box;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $accent-color;
+  padding: 1rem;
+  position: relative;
+  z-index: 1000;
+  height: 100px;
+  font-family: $secondary-font;
+}
+
+.brand-title {
+  margin-left: 20px;
+}
+
+// Navbar Links
+.navbar-links {
+  display: left;
+  justify-content: space-between;
+  align-items: center;
+  transition: left 0.3s ease; 
+  left: 0%;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+    li {
+      margin: 0 10px;
+      text-align: center;
+
+      a {
+        display: block;
+        padding: 15px 20px;
+        text-decoration: none;
+        color: #fcbd6a;;
+        transition: color 0.3s ease, background-color 0.3s ease;
+
+        &:focus {
+          outline: 2px solid #fff;
+        }
+
+        &:hover {
+          color: white;
+          background-color: $hover-color;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+
+.toggle-button {
+  display: none;
+  font-size: 2rem;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute; /* Mengatur posisi absolut */
+  top: 20px; /* Sesuaikan jarak dari atas */
+  left: 20px; /* Mengatur jarak dari kiri */
+
+  .bar {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    margin: 6px 0;
+  }
+}
+
+// Hero style
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .hero-image {
+    width: 100vw;
+    height: 60vh;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    font-family: "Lobster", sans-serif;
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(to bottom, rgb(219, 17, 17), $accent-color);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+      background: linear-gradient(to top, rgb(96, 69, 69), #ccc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  }
+}
+
+//Search Bar
+button {
+  box-sizing: border-box;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+
+  input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #c96767;
+    border-radius: 10px;
+    margin-right: 10px;
+    outline: none;
+    min-width: 44px;
+    min-height: 44px;
+
+    &:focus {
+      border-color: #ff6349;
+    }
+  }
+
+  .search-btn {
+    background-color: $highlight-color;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #493b38;
+    }
+  }
+}
+
+// Restaurant List
+#restaurant-list h2 {
+  width: 100%;
+  text-align: center;
+  margin: -250px auto 20px;
+  display: block;
+  font-size: 2.5rem;
+  color: $hover-color;
+  position: relative;
+  animation: fadeIn 1s ease-in-out;
+  font-family: "Protest Strike", sans-serif;
+}
+
+#restaurant-list h2::after {
+  content: '';
+  width: 170px;
+  height: 4px;
+  background-color: $line-color;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 15px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.restaurant-list {
+  padding: 25px;
+}
+
+.restaurant-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 40px 80px;
+  margin: 0 auto;
+
+  .restaurant-item {
+    position: relative;
+    background-color: $card-bg-color;
+    border-radius: 15px;
+    box-shadow: 1 4px 8px $shadow-color;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 400px;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .city {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color:#698474 ;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .info {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Membuat jarak antara teks rating dan ikon */
+      padding: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      color: $primary-text-color;
+    }
+    
+     i.fas.fa-heart,
+     i.fas.fa-comment,
+     i.fas.fa-share {
+      color: orange;
+      font-size: 1rem;
+      margin-left: 0px; /* Mengurangi jarak antar ikon */
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.2s ease-in-out;
+    }
+    
+     i.fas.fa-heart:hover,
+     i.fas.fa-comment:hover,
+     i.fas.fa-share:hover {
+      transform: scale(1.2);
+      color: #ff6347; /* Warna pada hover untuk menambah efek */
+    }
+    
+    .description {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #555;
+      text-align: left;
+    }
+  }
+}
+
+// Footer Styling
+footer {
+  background-color: $hover-color;
+  color: gray;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+
+  .footer-content {
+    p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+
+      &:nth-child(2) {
+        font-size: 0.8rem;
+        color: #ccc;
+      }
+    }
+  }
+}
